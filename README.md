@@ -2,6 +2,7 @@
 # Moniker
 
 A Flutter app that generates random names for businesses.
+
 **Note**: This app is available in both Material design and iOS-style design. Switch to `master` branch to access the Material design version of the app.
 
 ## Screenshots

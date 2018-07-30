@@ -3,9 +3,13 @@
 
 A Flutter app that generates random names for businesses.
 
+**Note**: This app is available in both Material design and iOS-style design. Switch to `ios-style` branch to access the iOS-style version of the app.
+
 ## Screenshots
 
 <img src="./design/screen0.png" width="35%">&ensp;<img src="./design/screen1.png" width="35%">
+
+
 
 ## Packages Used
 

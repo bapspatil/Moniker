@@ -3,6 +3,15 @@
 
 A Flutter app that generates random names for businesses.
 
+## Screenshots
+
+<img src="./design/screen0.png" width="35%">&ensp;<img src="./design/screen1.png" width="35%">
+
+## Packages Used
+
+* [cupertino_icons](https://pub.dartlang.org/packages/cupertino_icons)
+* [english_words](https://pub.dartlang.org/packages/english_words)
+
 ## Developed By
 
 Bapusaheb Patil

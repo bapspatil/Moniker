@@ -7,9 +7,9 @@ A Flutter app that generates random names for businesses.
 
 ## Screenshots
 
-<img src="./design/screen0.png" width="35%">&ensp;<img src="./design/screen1.png" width="35%">
+<img src="./design/screen0.png" width="35%">&ensp;<img src="./design/screen2.png" width="35%">
 
-<img src="./design/screen2.png" width="35%">&ensp;<img src="./design/screen3.png" width="35%">
+<img src="./design/screen1.png" width="35%">&ensp;<img src="./design/screen3.png" width="35%">
 
 ## Packages Used
 

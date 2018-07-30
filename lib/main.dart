@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:english_words/english_words.dart';
 
 void main() => runApp(new MyApp());
@@ -6,11 +7,8 @@ void main() => runApp(new MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return new MaterialApp(
       title: 'Moniker',
-      theme: ThemeData(
-          primaryColor: Colors.pink,
-      ),
       home: RandomWords(),
     );
   }
@@ -25,30 +23,34 @@ class RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _saved = Set<WordPair>();
   final _biggerFont = const TextStyle(
-    color: Colors.white,
     fontSize: 18.0,
+    color: Color(0xFF212121),
+    fontWeight: FontWeight.bold,
   );
 
   Widget _buildRow(WordPair pair) {
     final alreadySaved = _saved.contains(pair);
-    return ListTile(
-        title: Text(
-          pair.asPascalCase,
-          style: _biggerFont,
-        ),
-        trailing: Icon(
-          alreadySaved ? Icons.favorite : Icons.favorite_border,
-          color: alreadySaved ? Colors.red : Colors.blueGrey,
-        ),
-        onTap: () {
-          setState(() {
-            if (alreadySaved) {
-              _saved.remove(pair);
-            } else {
-              _saved.add(pair);
-            }
-          });
-        });
+    return Row(children: [
+      Expanded(
+          child: Text(
+        pair.asPascalCase,
+        style: _biggerFont,
+      )),
+      CupertinoButton(
+          child: Icon(
+            alreadySaved ? Icons.favorite : Icons.favorite_border,
+            color: alreadySaved ? Colors.red : Colors.blueGrey,
+          ),
+          onPressed: () {
+            setState(() {
+              if (alreadySaved) {
+                _saved.remove(pair);
+              } else {
+                _saved.add(pair);
+              }
+            });
+          }),
+    ]);
   }
 
   Widget _buildSuggestions() {
@@ -67,51 +69,53 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   void _pushSaved() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) {
-          final tiles = _saved.map(
-            (pair) {
-              return ListTile(
-                title: Text(
-                  pair.asPascalCase,
-                  style: _biggerFont,
-                ),
-              );
-            },
-          );
-
-          final divided = ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList();
-
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('Saved Names'),
-            ),
-            body: ListView(children: divided),
-            backgroundColor: Color(0xFF303030),
+    Navigator.of(context).push(CupertinoPageRoute(builder: (context) {
+      final tiles = _saved.map(
+        (pair) {
+          return Row(
+            children: [
+              Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    pair.asPascalCase,
+                    style: _biggerFont,
+                  ))
+            ],
           );
         },
-      ),
-    );
+      );
+
+      final divided = ListTile.divideTiles(
+        context: context,
+        tiles: tiles,
+      ).toList();
+
+      return Scaffold(
+        body: CupertinoPageScaffold(
+          navigationBar: CupertinoNavigationBar(
+            middle: Text('Saved Names'),
+          ),
+          child: ListView(children: divided),
+        ),
+      );
+    }));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Moniker'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.list),
+        body: CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+          middle: Text('Moniker'),
+          trailing: CupertinoButton(
+            child: Icon(
+              CupertinoIcons.collections,
+              color: CupertinoColors.activeBlue,
+              semanticLabel: 'Saved Names',
+            ),
             onPressed: _pushSaved,
-          )
-        ],
-      ),
-      body: _buildSuggestions(),
-      backgroundColor: Color(0xFF303030),
-    );
+          )),
+      child: _buildSuggestions(),
+    ));
   }
 }

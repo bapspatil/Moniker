@@ -7,7 +7,10 @@ description: A Flutter app that generates random names for businesses.
 # Both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
 # Read more about versioning at semver.org.
-version: 1.0.0+1
+version: 1.0.0
+author: Bapusaheb Patil <hi@bapspatil.com>
+homepage: https://github.com/bapspatil/Moniker
+
 
 dependencies:
   flutter:
@@ -16,6 +19,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+  english_words: ^3.1.3
 
 dev_dependencies:
   flutter_test:
